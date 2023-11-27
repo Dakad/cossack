@@ -1,7 +1,7 @@
 require "../spec_helper"
 
-Spec2.describe Cossack::RequestOptions do
-  let(options) { Cossack::RequestOptions.new }
+Spectator.describe Cossack::RequestOptions do
+  subject(options) { Cossack::RequestOptions.new }
 
   describe "#initialize" do
     it "sets default values" do

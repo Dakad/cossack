@@ -12,9 +12,6 @@ module Cossack
 
   class TimeoutError < Error; end
 
-  # Raised by TestConnection, when HTTP request is not stubbed.
-  class NoStubError < Error; end
-
   @@default_client = Client.new
 
   {% for method in %w(get post put patch delete head options) %}

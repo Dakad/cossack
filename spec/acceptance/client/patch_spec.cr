@@ -1,6 +1,6 @@
 require "../../spec_helper"
 
-Spec2.describe "PATCH requests" do
+Spectator.describe "PATCH requests" do
   let(client) { Cossack::Client.new(TEST_SERVER_URL) }
 
   describe "#patch" do

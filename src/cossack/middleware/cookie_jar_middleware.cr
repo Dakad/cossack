@@ -18,10 +18,10 @@ module Cossack
     def initialize(@app, @cookie_jar : CookieJar = CookieJar.new)
     end
 
-    def call(request)
+    def call(request : Request) : Response
       cookie_jar.add_request_headers(request.headers)
       response = app.call(request)
-      cookie_jar.fill_from_headers(response.headers)
+      cookie_jar.fill_from_server_headers(response.headers)
 
       response
     end

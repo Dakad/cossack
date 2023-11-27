@@ -1,6 +1,6 @@
 require "../spec_helper"
 
-Spec2.describe Cossack::Response do
+Spectator.describe Cossack::Response do
   describe "#initialize" do
     it "initializes with all arguments" do
       headers = HTTP::Headers.new

@@ -1,16 +1,15 @@
 # Server for acceptance tests.
-
 require "kemal"
 
-module Kemal
-  class RouteHandler
-    # Override Kemal RouteHandler to NOT add a HEAD route for a GET route
-    def add_route(method : String, path : String, &handler : HTTP::Server::Context -> _)
-      puts "add_route(#{method}, #{path})"
-      add_to_radix_tree method, path, Route.new(method, path, &handler)
-    end
-  end
-end
+# module Kemal
+#   class RouteHandler
+#     # Override Kemal RouteHandler to NOT add a HEAD route for a GET route
+#     def add_route(method : String, path : String, &handler : HTTP::Server::Context -> _)
+#       puts "add_route(#{method}, #{path})"
+#       add_to_radix_tree method, path, Route.new(method, path, &handler)
+#     end
+#   end
+# end
 
 get "/" do
   "root"
@@ -47,7 +46,7 @@ end
   {{method.id}} "/http/reflect", &REFLECT_HANDLER
 {% end %}
 
-Kemal::RouteHandler::INSTANCE.add_route("HEAD", "/http/reflect", &REFLECT_HANDLER)
+# Kemal::RouteHandler::INSTANCE.add_route("HEAD", "/http/reflect", &REFLECT_HANDLER)
 
 get "/delay/:delay" do |env|
   delay = env.params.url["delay"].to_f

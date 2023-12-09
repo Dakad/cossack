@@ -3,11 +3,11 @@ module Cossack
     class Stub
       getter :request_matcher, :response
 
-      def initialize(@request_matcher : RequestMatcher, @response : Response)
+      def initialize(@request_matcher : Spectator::Matchers::RequestMatcher, @response : Response)
       end
 
       def matches?(request : Request)
-        @request_matcher.matches?(request)
+        @request_matcher.compare_with?(request)
       end
     end
   end

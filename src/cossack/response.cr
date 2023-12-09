@@ -16,15 +16,15 @@ module Cossack
   class Response
     getter :status, :headers, :body
 
-    def initialize(@status : Int32, @headers : HTTP::Headers, @body : String)
+    def initialize(@status : Int32, @headers : HTTP::Headers, @body : BodyType)
     end
 
-    def initialize(@status : Int32, headers : Hash(String, String), @body : String)
+    def initialize(@status : Int32, headers : Hash(String, String), @body : BodyType)
       @headers = HTTP::Headers.new
       headers.each { |name, val| @headers[name] = val }
     end
 
-    def initialize(@status : Int32, @body : String)
+    def initialize(@status : Int32, @body : BodyType)
       @headers = HTTP::Headers.new
     end
 

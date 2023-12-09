@@ -1,4 +1,6 @@
-Spec2.describe "GET requests" do
+require "../../spec_helper"
+
+Spectator.describe "GET requests" do
   let(client) { Cossack::Client.new(TEST_SERVER_URL) }
 
   describe "#get" do

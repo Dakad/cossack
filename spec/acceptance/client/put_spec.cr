@@ -1,6 +1,6 @@
 require "../../spec_helper"
 
-Spec2.describe "PUT requests" do
+Spectator.describe "PUT requests" do
   let(client) { Cossack::Client.new(TEST_SERVER_URL) }
 
   describe "#put" do

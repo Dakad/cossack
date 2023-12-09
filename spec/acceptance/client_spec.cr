@@ -1,6 +1,6 @@
 require "../spec_helper"
 
-Spec2.describe "Client" do
+Spectator.describe Cossack::Client do
   it "works with base url" do
     client = Cossack::Client.new("#{TEST_SERVER_URL}/math/")
     response = client.get("/add", {"a" => "2", "b" => "3"})

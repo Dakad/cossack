@@ -1,3 +1,6 @@
+#### v2.0.0 2023-11-27
+* Replace Spec2 by Spectator shard
+
 #### v0.1.4 2016-09-09
 * Crystal 0.19 support (thelonelyghost)
 

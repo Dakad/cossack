@@ -2,10 +2,10 @@ require "../spec_helper"
 
 # Writes response to Array @responses.
 class TestMiddlwareWriter < Cossack::Middleware
-  def initialize(@app, @responses = [] of String)
+  def initialize(@app, @responses = [] of Cossack::BodyType)
   end
 
-  def call(request)
+  def call(request : Cossack::Request) : Cossack::Response
     app.call(request).tap do |response|
       @responses << response.body
     end
@@ -14,14 +14,14 @@ end
 
 # Does nothing
 class TestMiddlewareNull < Cossack::Middleware
-  def call(request)
+  def call(request : Cossack::Request) : Cossack::Response
     app.call(request)
   end
 end
 
-describe "Middleware usage" do
+Spectator.describe "Middleware usage" do
   it "allows to register middleware" do
-    responses = [] of String
+    responses = [] of Cossack::BodyType
 
     client = Cossack::Client.new(TEST_SERVER_URL) do |client|
       client.use TestMiddlwareWriter, responses
@@ -29,14 +29,14 @@ describe "Middleware usage" do
     end
 
     client.get("/")
-    responses.should eq ["root"]
+    expect(responses).to match_array(["root"])
 
     client.get("/math/add", {"a" => "4", "b" => "5"})
-    responses.should eq ["root", "9"]
+    expect(responses).to match_array(["root", "9"])
   end
 
   it "works with swapped connection" do
-    responses = [] of String
+    responses = [] of Cossack::BodyType
 
     client = Cossack::Client.new(TEST_SERVER_URL) do |client|
       client.use TestMiddlwareWriter, responses
@@ -44,12 +44,12 @@ describe "Middleware usage" do
         Cossack::Response.new(201, HTTP::Headers.new, "hello")
       end
       client.get("/")
-      responses.should eq ["hello"]
+      expect(responses).to match_array(["hello"])
     end
   end
 
   it "works with swapped connection passed as proc" do
-    responses = [] of String
+    responses = [] of Cossack::BodyType
 
     client = Cossack::Client.new(TEST_SERVER_URL) do |client|
       client.use TestMiddlwareWriter, responses
@@ -57,7 +57,7 @@ describe "Middleware usage" do
         Cossack::Response.new(201, HTTP::Headers.new, "hello")
       end
       client.get("/")
-      responses.should eq ["hello"]
+      expect(responses).to match_array(["hello"])
     end
   end
 end

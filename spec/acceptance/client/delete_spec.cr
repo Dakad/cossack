@@ -1,6 +1,6 @@
 require "../../spec_helper"
 
-Spec2.describe "DELETE requests" do
+Spectator.describe "DELETE requests" do
   let(client) { Cossack::Client.new(TEST_SERVER_URL) }
 
   describe "#delete" do

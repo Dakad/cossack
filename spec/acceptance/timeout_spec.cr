@@ -1,6 +1,6 @@
 require "../spec_helper"
 
-Spec2.describe "Timeout options" do
+Spectator.describe "Timeout options" do
   describe "read_timeout" do
     it "raises TimeoutError if response takes too long" do
       client = Cossack::Client.new("#{TEST_SERVER_URL}")

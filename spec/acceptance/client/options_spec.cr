@@ -1,6 +1,6 @@
 require "../../spec_helper"
 
-Spec2.describe "OPTIONS requests" do
+Spectator.describe "OPTIONS requests" do
   let(client) { Cossack::Client.new(TEST_SERVER_URL) }
 
   describe "#options" do

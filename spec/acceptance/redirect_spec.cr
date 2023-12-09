@@ -1,6 +1,6 @@
 require "../spec_helper"
 
-Spec2.describe "Client with RedirectionMiddleware" do
+Spectator.describe Cossack::RedirectionMiddleware do
   it "follows default number of redirections" do
     client = Cossack::Client.new(TEST_SERVER_URL) do |client|
       client.use Cossack::RedirectionMiddleware

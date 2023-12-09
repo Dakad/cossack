@@ -1,6 +1,6 @@
 require "../../spec_helper"
 
-Spec2.describe "HEAD requests" do
+Spectator.describe "HEAD requests" do
   let(client) { Cossack::Client.new(TEST_SERVER_URL) }
 
   describe "#head" do

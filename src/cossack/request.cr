@@ -24,5 +24,28 @@ module Cossack
     def initialize(@method : String, uri : String, @headers : HTTP::Headers = HTTP::Headers.new, @body : BodyType = nil, @options = RequestOptions.new)
       @uri = URI.parse(uri)
     end
+
+    def initialize(@method : String, @uri : URI, headers : Hash(String, String) = {} of String => String, @body : BodyType = nil, @options = RequestOptions.new)
+      @headers = HTTP::Headers.new
+      headers.each { |name, value| @headers.add(name, value) }
+    end
+
+    def initialize(@method : String, uri : String, headers : Hash(String, String) = {} of String => String, @body : BodyType = nil, @options = RequestOptions.new)
+      @uri = URI.parse(uri)
+      @headers = HTTP::Headers.new
+      headers.each { |name, value| @headers.add(name, value) }
+    end
+
+
+    def to_s
+     str =  method + " " + uri.to_s
+     str += " with " + headers.to_s unless headers.empty?
+     str += " with body: " + body.to_s unless body.nil?
+     str
+    end
+
+    def inspect
+      to_s
+    end
   end
 end

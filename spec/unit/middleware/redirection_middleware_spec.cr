@@ -1,6 +1,6 @@
 require "../../spec_helper"
 
-Spec2.describe Cossack::RedirectionMiddleware do
+Spectator.describe Cossack::RedirectionMiddleware do
   let(connection) { Cossack::TestConnection.new }
   let(middleware) { Cossack::RedirectionMiddleware.new(connection) }
   let(request) { Cossack::Request.new("GET", "http://test.org/abc/origin") }

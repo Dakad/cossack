@@ -1,6 +1,6 @@
 require "../spec_helper"
 
-Spec2.describe "CookieJarMiddleware usage" do
+Spectator.describe Cossack::CookieJarMiddleware do
   let(client) do
     client = Cossack::Client.new(TEST_SERVER_URL)
     client.use Cossack::CookieJarMiddleware, cookie_jar: client.cookies
